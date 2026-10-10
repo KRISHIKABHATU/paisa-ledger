@@ -1,7 +1,7 @@
 # Paisa Ledger
 
-Personal finance app for India: income, expenses, stocks, mutual funds, PPF,
-Sukanya Samriddhi, insurance, ULIP and account balances, with Excel import and export.
+Personal finance app for India: salary planner, emergency fund, income, expenses, stocks, mutual funds, PPF,
+Sukanya Samriddhi, insurance, ULIP, 80C, capital gains and an ITR-3 helper for F&O and intraday traders, with Excel import and export.
 
 Open the app: https://krishikabhatu.github.io/paisa-ledger/
 
