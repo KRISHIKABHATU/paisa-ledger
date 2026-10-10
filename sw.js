@@ -1,18 +1,2 @@
-const CACHE = "paisa-ledger-v1";
-const FILES = ["./", "./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png"];
-self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
-self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))));
-  self.clients.claim();
-});
-self.addEventListener("fetch", e => {
-  if (e.request.method !== "GET") return;
-  e.respondWith(
-    fetch(e.request).then(r => {
-      if (r.ok && new URL(e.request.url).origin === location.origin) {
-        const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy));
-      }
-      return r;
-    }).catch(() => caches.match(e.request).then(m => m || caches.match("./index.html")))
-  );
-});
+/* © 2026 krishikabhatu2018. Paisa Ledger. All rights reserved. */
+const e="paisa-ledger-v2",t=["./","./index.html","./manifest.json","./icon-192.png","./icon-512.png","./xlsx.full.min.js"];self.addEventListener("install",(n=>{n.waitUntil(caches.open(e).then((e=>e.addAll(t)))),self.skipWaiting()})),self.addEventListener("activate",(t=>{t.waitUntil(caches.keys().then((t=>Promise.all(t.filter((t=>t!==e)).map((e=>caches.delete(e))))))),self.clients.claim()})),self.addEventListener("fetch",(t=>{"GET"===t.request.method&&t.respondWith(fetch(t.request).then((n=>{if(n.ok&&new URL(t.request.url).origin===location.origin){const s=n.clone();caches.open(e).then((e=>e.put(t.request,s)))}return n})).catch((()=>caches.match(t.request).then((e=>e||caches.match("./index.html"))))))}));

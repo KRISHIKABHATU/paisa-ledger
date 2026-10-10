@@ -1,7 +1,7 @@
 {
   "name": "Paisa Ledger",
   "short_name": "Paisa Ledger",
-  "description": "Track income, expenses, investments and account balances in rupees.",
+  "description": "Track income, expenses, investments, insurance and account balances in rupees.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
