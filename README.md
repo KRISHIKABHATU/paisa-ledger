@@ -11,3 +11,14 @@ All data stays on the user's own device.
 
 © 2026 krishikabhatu2018. All rights reserved. See LICENSE.
 This is not open-source software. Copying or reusing the code or design is not permitted.
+
+## Project files
+
+- `index.html` – page layout (screens, forms, tabs)
+- `css/styles.css` – all styling, light and dark mode
+- `js/app.js` – main app logic (entries, plan, investments, tax, accounts, import, backup, lock, Drive sync)
+- `portfolio.js` – Portfolio module
+- `sw.js` – offline support; bump `CACHE` (e.g. `paisa-ledger-v15`) on every release
+- `xlsx.full.min.js` – SheetJS library for Excel import/export (do not edit)
+
+Data is stored in the browser's localStorage under keys starting with `pl_`. Never rename these keys, or existing users will lose their data.

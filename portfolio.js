@@ -667,5 +667,41 @@
     ".hero .tiles .tile .num{font-size:.9rem}";
   document.head.appendChild(st);
 
+  /* ---------- hook used by the main app's Save, Restore and Merge backup ---------- */
+  function hasData(p) {
+    return p && ((p.holdings && p.holdings.length) || (p.trades && p.trades.length) || Number(p.cash0));
+  }
+  window.plPortfolio = {
+    data: function () {
+      return db;
+    },
+    // Replace all portfolios with the ones from a backup. Returns how many portfolios were restored.
+    replace: function (d) {
+      if (!d || !Array.isArray(d.list) || !d.list.length) return 0;
+      try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { return 0; }
+      db = load();
+      render();
+      return db.list.length;
+    },
+    // Add portfolios from another device that are not here yet. Returns how many were added.
+    merge: function (d) {
+      if (!d || !Array.isArray(d.list)) return 0;
+      var have = {}, added = 0;
+      db.list.forEach(function (p) { have[p.id] = true; });
+      d.list.forEach(function (p) {
+        if (p && p.id && !have[p.id] && hasData(p)) {
+          db.list.push(p);
+          have[p.id] = true;
+          added++;
+        }
+      });
+      if (added) {
+        save();
+        render();
+      }
+      return added;
+    },
+  };
+
   render();
 })();
